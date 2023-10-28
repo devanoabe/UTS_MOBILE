@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +12,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Color myColor = Color.fromRGBO(233, 238, 245, 0);
     return MaterialApp(
+      
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -32,562 +36,787 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- 
+  List<ImageProvider> itemImage = [
+    NetworkImage("https://d1csarkz8obe9u.cloudfront.net/posterpreviews/green-real-estate-landscape-digital-display-v-design-template-09d645348baa8cef435148f7a90fc6a6_screen.jpg?ts=1594879964"),
+    NetworkImage("https://algorit.ma/wp-content/uploads/2022/07/landscape.webp"),
+    NetworkImage("https://algorit.ma/wp-content/uploads/2022/02/landscape.png"),
+  ];
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+      
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(top: 8.0), // Pergeseran ke bawah
+        child: Container(
+            width: 50.0, // Atur lebar tombol
+            height: 50.0, // Atur tinggi tombol
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color.fromARGB(255, 255, 255, 255), width: 3, style: BorderStyle.solid),
+              borderRadius: BorderRadius.circular(19),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(255, 181, 181, 181).withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 3,
+                  offset: Offset(0, 2.5), // posisi bayangan
+                ),
+              ], 
+            ),
+            child: FloatingActionButton(
+              onPressed: () {},
+              backgroundColor: Colors.red,
+              child: Icon(Icons.qr_code_scanner, color: Colors.white, size: 34),
+            ),
+          ),
+      ),
+
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          indicatorColor: Color.fromARGB(0, 255, 255, 255),
+          labelTextStyle: MaterialStateProperty.all(
+            TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500, height: -0.04)
+          ),
+        ),
+        child: NavigationBar(
+          height: 72,
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          destinations: [
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              child: NavigationDestination(
+                  icon: Icon(Icons.home, color: Colors.red, size: 32), 
+                  label: 'Home',
+                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              child: NavigationDestination(
+                  icon: Icon(Icons.history, size: 32), 
+                  label: 'History',
+                ),
+            ),
+            Container(
+              alignment:Alignment.center,
+              margin: EdgeInsets.only(top: 14),
+              child: Text("Pay", style: TextStyle(fontSize:11.5,color:const Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.w500))
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              child: NavigationDestination(
+                  icon: Icon(Icons.inbox, size: 32), 
+                  label: 'Inbox',
+                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              child: NavigationDestination(
+                  icon: Icon(Icons.account_box_rounded, size: 32), 
+                  label: 'Account',
+                ),
+            ),
+          ],
+        ),
+      ),
 
       body: 
       SingleChildScrollView(
-        child: Column(
-      
-          children: [
-      
-            Row(
-                children: <Widget>[
-                  Expanded(
-                    child: 
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          alignment:Alignment.centerLeft,
-                          child: 
-                            Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/LinkAja.svg/2048px-LinkAja.svg.png",
-                            width: 42,
-                            height: 42,),
+        child: Container(
+
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [const Color.fromARGB(255, 255, 255, 255), Color.fromARGB(245, 226, 233, 244)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Column(
+            
+            children: [
+        
+              // BottomNavigationBar(items: items),            
+              
+              Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: 
+                        Padding(
+                          padding: const EdgeInsets.only(top: 40.0, bottom: 20, left: 20),
+                          child: Container(
+                            alignment:Alignment.centerLeft,
+                            child: 
+                              Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/LinkAja.svg/2048px-LinkAja.svg.png",
+                              width: 42,
+                              height: 42,),
+                          ),
                         ),
-                      ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/5009/5009570.png",
-                              width: 42,
-                              height: 42,
-                            ),
-                            SizedBox(width: 8.0), // jarak antara gambar
-                            Image.network(
-                              "https://cdn.icon-icons.com/icons2/2761/PNG/512/love_heart_icon_176421.png",
-                              width: 42,
-                              height: 42,
-                            ),
-                          ],
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 40.0, bottom: 20, right: 20, left: 20),
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Image.network(
+                                "https://cdn-icons-png.flaticon.com/512/5009/5009570.png",
+                                width: 42,
+                                height: 42,
+                              ),
+                              SizedBox(width: 8.0), // jarak antara gambar
+                              Image.network(
+                                "https://cdn.icon-icons.com/icons2/2761/PNG/512/love_heart_icon_176421.png",
+                                width: 42,
+                                height: 42,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                  ],
+              ),
+                
+              Container(
+                margin: EdgeInsets.only(left: 20, right: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: LinearGradient(
+                    colors: [Color.fromARGB(255, 255, 0, 0), Color.fromARGB(245, 196, 0, 0)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.bottomRight,
                   ),
-                ],
-            ),
-      
-            Container(
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 236, 0, 0),
-                borderRadius: BorderRadius.circular(6),
-              ),            
-              child: Column(
-                children: <Widget>[
-                  Container( 
-                    alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.only(bottom: 12, top: 18, left: 18),
-                    child: Text("Hi, SOFYAN NOOR ARIEF,S.ST, M.KOM", style: TextStyle(fontSize:18,color:Color.fromARGB(255, 255, 255, 255)))
-                  ),
-
+                ),            
+                child: Column(
+                  children: <Widget>[
+                    Container( 
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.only(bottom: 12, top: 18, left: 18),
+                      child: Text("Hi, SOFYAN NOOR ARIEF,S.ST, M.KOM", style: TextStyle(fontSize:14,color:Color.fromARGB(255, 255, 255, 255)))
+                    ),
+        
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, bottom: 18),
+                            child: Row(
+                              children: [
+                                Container(
+                                   decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),  
+                                  padding: EdgeInsets.only(top:20, left: 10, bottom: 13, right: 31),
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Your Balance",
+                                        style: TextStyle(
+                                          fontSize: 11.5,
+                                          color: Color.fromARGB(255, 86, 86, 86),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      SizedBox(height: 4.0), // jarak antara teks
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "Rp.10.184",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(255, 36, 36, 36),
+                                              letterSpacing: -0.1
+                                            ),
+                                          ),
+                                          SizedBox(width: 6.0), // jarak antara teks dan gambar
+                                          Image.network(
+                                            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Eo_circle_red_arrow-right.svg/2048px-Eo_circle_red_arrow-right.svg.png",
+                                            width: 14,
+                                            height: 14,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        
+                        Expanded(
+                          flex: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18, bottom: 18),
+                            child: Row(
+                              children: [
+                                Container(
+                                   decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),  
+                                  width: 120,
+                                  padding: EdgeInsets.only(top:20, left: 10, bottom: 13),
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Bonus Balance",
+                                        style: TextStyle(
+                                          fontSize: 11.5,
+                                          color: Color.fromARGB(255, 86, 86, 86),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      SizedBox(height: 4.0), // jarak antara teks
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "0",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(255, 36, 36, 36),
+                                            ),
+                                          ),
+                                          SizedBox(width: 6.0), // jarak antara teks dan gambar
+                                          Image.network(
+                                            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Eo_circle_red_arrow-right.svg/2048px-Eo_circle_red_arrow-right.svg.png",
+                                            width: 14,
+                                            height: 14,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+        
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            
+              Container(
+                margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    border: Border.all(width: 1,color: Color.fromARGB(255, 219, 219, 219)),
+                    borderRadius: BorderRadius.circular(6),
+                  ),  
+                child: 
                   Row(
-                    children: <Widget>[
+                    children: [
 
                       Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 18),
-                          child: Row(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          margin: EdgeInsets.all(13),
+                          child: Column(
                             children: [
-                              Container(
-                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),  
-                                width: 200,
-                                padding: EdgeInsets.only(top:20, left: 10, bottom: 13),
-                                alignment: Alignment.centerLeft,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Your Balance",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color.fromARGB(255, 72, 72, 72),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4.0), // jarak antara teks
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Rp.10.184",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color.fromARGB(255, 36, 36, 36),
-                                          ),
-                                        ),
-                                        SizedBox(width: 6.0), // jarak antara teks dan gambar
-                                        Image.network(
-                                          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Eo_circle_red_arrow-right.svg/2048px-Eo_circle_red_arrow-right.svg.png",
-                                          width: 18,
-                                          height: 18,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                              Icon(Icons.money, color: Color.fromARGB(255, 0, 0, 0), size: 34),
+                              SizedBox(height: 4.0), // jarak antara teks  
+                              Text(
+                              "TopUp",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 99, 99, 99),
                                 ),
-                              ),
+                              ),  
                             ],
                           ),
                         ),
                       ),
-                      
+        
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18, bottom: 18),
-                          child: Row(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          margin: EdgeInsets.all(13),
+                          child: Column(
                             children: [
-                              Container(
-                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),  
-                                width: 200,
-                                padding: EdgeInsets.only(top:20, left: 10, bottom: 13),
-                                alignment: Alignment.centerLeft,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Bonus Balance",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color.fromARGB(255, 72, 72, 72),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4.0), // jarak antara teks
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "0",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color.fromARGB(255, 36, 36, 36),
-                                          ),
-                                        ),
-                                        SizedBox(width: 6.0), // jarak antara teks dan gambar
-                                        Image.network(
-                                          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Eo_circle_red_arrow-right.svg/2048px-Eo_circle_red_arrow-right.svg.png",
-                                          width: 18,
-                                          height: 18,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                              Icon(Icons.attach_money, color: Color.fromARGB(255, 0, 0, 0), size: 34),
+                              SizedBox(height: 4.0), // jarak antara teks
+                              Text(
+                              "Send Money",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 99, 99, 99),
                                 ),
-                              ),
+                              ),  
                             ],
                           ),
                         ),
                       ),
-
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          margin: EdgeInsets.all(13),
+                          child: Column(
+                            children: [
+                              Icon(Icons.airplane_ticket, color: Color.fromARGB(255, 0, 0, 0), size: 34),
+                              SizedBox(height: 4.0), // jarak antara teks   
+                              Text(
+                              "Ticket Code",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 99, 99, 99),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          margin: EdgeInsets.all(13),
+                          child: Column(
+                            children: [
+                              Icon(Icons.select_all, color: Color.fromARGB(255, 0, 0, 0), size: 34),
+                              SizedBox(height: 4.0), // jarak antara teks    
+                              Text(
+                              "See All",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 99, 99, 99),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
                     ],
                   ),
-                ],
               ),
-            ),
-          
-            Container(
-              margin: EdgeInsets.only(left: 10, right: 10, top: 18),
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1,color: const Color.fromARGB(255, 132, 132, 132)),
-                  borderRadius: BorderRadius.circular(6),
-                ),  
-              child: 
-                Row(
-                  children: [
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        margin: EdgeInsets.all(13),
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 4.0), // jarak antara teks  
-                            Text(
-                            "Top Up",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
+        
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10, top: 30),
+                child: 
+                  Row(
+                    children: [
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://cdn3d.iconscout.com/3d/premium/thumb/phone-2891401-2409808@0.png?f=webp",
+                                  width: 62,
+                                  height: 62,
+                                ),
                               ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 4.0), // jarak antara teks  
-                            Text(
-                            "Send Money",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 4.0), // jarak antara teks  
-                            Text(
-                            "Ticket Code",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 4.0), // jarak antara teks  
-                            Text(
-                            "See All",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-            ),
-
-            Container(
-              margin: EdgeInsets.only(left: 10, right: 10, top: 40),
-              child: 
-                Row(
-                  children: [
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "Top Up",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "Send Money",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "Ticket Code",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "See All",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-            ),
-
-            Container(
-              margin: EdgeInsets.only(left: 10, right: 10, top: 40),
-              child: 
-                Row(
-                  children: [
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "Cable TV\n& Internet",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "PDAM",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "Kartu Uang\n& Elektronik",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        alignment:Alignment.center,
-                        child: Column(
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/512/130/130884.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            SizedBox(height: 20.0), // jarak antara teks  
-                            Text(
-                            "More",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 36, 36, 36),
-                              ),
-                            ),  
-                          ],
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-            ),
-
-            Container(
-              margin: EdgeInsets.only(top: 30, left: 10, right: 10),
-              child: Column(
-                children: <Widget>[
-                  Image.network("https://akcdn.detik.net.id/community/media/visual/2023/09/23/cristiano-ronaldo-2.jpeg?w=600&q=90"),
-                  Container( 
-                    margin: EdgeInsets.only(bottom: 10, top: 10),
-                    child: Text("Cristiano Ronaldo", style: TextStyle(fontSize:40,color:const Color.fromARGB(255, 0, 0, 0)))
-                  ),
-                ],
-              ),
-            ),
-
-            AppBar(
-              title: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Image.asset(
-                          "images/mes.png",
-                          width: 24,
-                          height: 24,
-                        ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: 
-                        Text
-                          ("Hola, Devano", 
-                            style: TextStyle(
-                                fontSize: 16, 
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontWeight: FontWeight.bold,
-                              )
+                              SizedBox(height: 20.0), // jarak antara teks  
+                              Text(
+                              "Pulsa/Data",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
                           ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.centerRight,
-                      child: Image.asset(
-                          "images/user.png",
-                          width: 24,
-                          height: 24,
                         ),
+                      ),
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://cdn3d.iconscout.com/3d/premium/thumb/electric-5282500-4413093.png",
+                                  width: 62,
+                                  height: 62,
+                                ),
+                              ),
+                              SizedBox(height: 20.0), // jarak antara teks  
+                              Text(
+                              "Electricity",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://cdn3d.iconscout.com/3d/premium/thumb/hospital-6101753-5023487.png",
+                                  width: 62,
+                                  height: 62,
+                                ),
+                              ),
+                              SizedBox(height: 20.0), // jarak antara teks  
+                              Text(
+                              "BPJS",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://static.vecteezy.com/system/resources/previews/011/619/365/original/game-pad-3d-render-icon-illustration-png.png",
+                                  width: 50,
+                                  height: 50,
+                                ),
+                              ),
+                              SizedBox(height: 20.0), // jarak antara teks  
+                              Text(
+                              "Games",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                    ],
+                  ),
+              ),
+        
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10, top: 40),
+                child: 
+                  Row(
+                    children: [
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://cdn3d.iconscout.com/3d/premium/thumb/vintage-tv-4371908-3626671.png",
+                                  width: 62,
+                                  height: 62,
+                                ),
+                              ),
+                              SizedBox(height: 8.0), // jarak antara teks  
+                              Text(
+                              " Cable TV\n& Internet",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://cdn3d.iconscout.com/3d/premium/thumb/water-drop-5004929-4171787.png?f=webp",
+                                  width: 62,
+                                  height: 62,
+                                ),
+                              ),
+                              SizedBox(height: 28.0), // jarak antara teks  
+                              Text(
+                              "PDAM",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://static.vecteezy.com/system/resources/previews/016/757/166/original/3d-credit-card-icon-with-money-banknote-isolated-online-shopping-saving-money-online-payment-business-finance-cashless-concept-3d-render-illustration-png.png",
+                                  width: 62,
+                                  height: 62,
+                                ),
+                              ),
+                              SizedBox(height: 8.0), // jarak antara teks  
+                              Text(
+                              "Kartu Uang\n Elektronik",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                      Expanded(
+                        child: 
+                        Container(
+                          alignment:Alignment.center,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 222, 222, 222).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // posisi bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Image.network(
+                                  "https://static.vecteezy.com/system/resources/previews/012/794/596/original/more-icon-3d-render-png.png",
+                                  width: 62,
+                                  height: 62,
+                                ),
+                              ),
+                              SizedBox(height: 28.0), // jarak antara teks  
+                              Text(
+                              "More",
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  color: Color.fromARGB(255, 36, 36, 36),
+                                ),
+                              ),  
+                            ],
+                          ),
+                        ),
+                      ),
+        
+                    ],
+                  ),
+              ),
+
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 230,
+                    width: double.infinity,
+                    child: CarouselSlider(
+                      items: [
+                        for(int i = 0; i < itemImage.length; i++)
+                          Container(
+                            alignment: Alignment.center,
+                            margin: EdgeInsets.only(left: 10, right: 10, top: 30, bottom: 15), 
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: itemImage[i],
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 181, 181, 181).withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 3,
+                                  offset: Offset(0, 2.5), // shadow position
+                                ),
+                              ],
+                            ),
+                          )
+                      ],
+                      options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            print(reason.toString());
+                            currentIndex = index;
+                          });
+                        },
+                        autoPlay: true
+                      ),
                     ),
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, bottom: 30),
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        for(int i =  0; i < itemImage.length; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              height: 9,
+                              width: 9,
+                              decoration: BoxDecoration(
+                                color: currentIndex == i ? Colors.red : const Color.fromARGB(255, 180, 180, 180),
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 181, 181, 181).withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 3,
+                                      offset: Offset(0, 2.5), // shadow position
+                                    ),
+                                  ],
+                              ),
+                            ),
+                          )
+                      ],
+                    ),
+                  )
+
                 ],
-              ),
-            ),
-      
-          ],
+              )
+            ]
+          ),
         ),
       ),
 
