@@ -92,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
           labelTextStyle: MaterialStateProperty.all(
             TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500, height: -0.04),
           ),
+          shadowColor: Colors.black
         ),
         child: NavigationBar(
           onDestinationSelected:  (index) =>

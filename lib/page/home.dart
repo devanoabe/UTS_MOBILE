@@ -54,8 +54,16 @@ class HomePageLink extends State<HomePage> {
         child: Container(
 
           decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage('https://static.vecteezy.com/system/resources/previews/011/651/324/non_2x/newyork-city-highrise-skyline-simplicity-flat-design-free-png.png'),
+              alignment: Alignment.topCenter,
+              colorFilter: ColorFilter.mode(
+                Color.fromARGB(255, 107, 220, 255).withOpacity(0.4), 
+                BlendMode.srcATop
+              ),
+            ),
             gradient: LinearGradient(
-              colors: [const Color.fromARGB(255, 255, 255, 255), Color.fromARGB(245, 226, 233, 244)],
+              colors: [Color.fromARGB(245, 242, 247, 255), Color.fromARGB(245, 226, 233, 244)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -63,8 +71,6 @@ class HomePageLink extends State<HomePage> {
           child: Column(
             
             children: [
-        
-              // BottomNavigationBar(items: items),            
               
               Row(
                   children: <Widget>[
@@ -89,16 +95,26 @@ class HomePageLink extends State<HomePage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Image.network(
-                                "https://cdn-icons-png.flaticon.com/512/5009/5009570.png",
-                                width: 42,
-                                height: 42,
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  border: Border.all(width: 1,color: Color.fromARGB(255, 219, 219, 219)),
+                                  borderRadius: BorderRadius.circular(12),
+                                ), 
+                                padding: EdgeInsets.all(8),
+                                child: 
+                                  Icon(Icons.discount_outlined, size: 22)
                               ),
                               SizedBox(width: 8.0), // jarak antara gambar
-                              Image.network(
-                                "https://cdn.icon-icons.com/icons2/2761/PNG/512/love_heart_icon_176421.png",
-                                width: 42,
-                                height: 42,
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  border: Border.all(width: 1,color: Color.fromARGB(255, 219, 219, 219)),
+                                  borderRadius: BorderRadius.circular(12),
+                                ), 
+                                padding: EdgeInsets.all(8),
+                                child: 
+                                  Icon(Icons.heart_broken_outlined, size: 22)
                               ),
                             ],
                           ),
@@ -111,6 +127,14 @@ class HomePageLink extends State<HomePage> {
               Container(
                 margin: EdgeInsets.only(left: 20, right: 20),
                 decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage('https://static.vecteezy.com/system/resources/thumbnails/000/108/700/small/free-batik-pattern-vector-3.jpg'),
+                    alignment: Alignment.centerRight,
+                    colorFilter: ColorFilter.mode(
+                      Color.fromARGB(255, 238, 0, 0).withOpacity(0.9), 
+                      BlendMode.srcATop
+                    ),
+                  ),
                   borderRadius: BorderRadius.circular(6),
                   gradient: LinearGradient(
                     colors: [Color.fromARGB(255, 255, 0, 0), Color.fromARGB(245, 196, 0, 0)],
@@ -242,7 +266,7 @@ class HomePageLink extends State<HomePage> {
             
               Container(
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                decoration: BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
                     border: Border.all(width: 1,color: Color.fromARGB(255, 219, 219, 219)),
                     borderRadius: BorderRadius.circular(6),
@@ -721,11 +745,11 @@ class HomePageLink extends State<HomePage> {
                       children: [
                         for(int i =  0; i < itemImage.length; i++)
                           Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
+                            padding: const EdgeInsets.only(left: 9.0),
                             child: Container(
                               alignment: Alignment.centerLeft,
-                              height: 9,
-                              width: 9,
+                              height: 8.5,
+                              width: 8.5,
                               decoration: BoxDecoration(
                                 color: currentIndex == i ? Colors.red : const Color.fromARGB(255, 180, 180, 180),
                                 shape: BoxShape.circle,
