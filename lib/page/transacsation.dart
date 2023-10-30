@@ -44,6 +44,27 @@ class TransPageLinkAja extends State<TransPage> {
       child: Scaffold(
     
         appBar: AppBar(
+          
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          toolbarHeight: 62,
+          shadowColor: Colors.black,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 8),
+                alignment: Alignment.center,
+                child: Text(
+                  "Transaction History",
+                  style: TextStyle(
+                    fontSize: 23,
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
           bottom: 
             TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
@@ -58,26 +79,6 @@ class TransPageLinkAja extends State<TransPage> {
                 Tab(text: "Sending"),
                 ]
             ),
-          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-          toolbarHeight: 102,
-          shadowColor: Colors.black,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 18),
-                alignment: Alignment.center,
-                child: Text(
-                  "Transaction History",
-                  style: TextStyle(
-                    fontSize: 23,
-                    color: const Color.fromARGB(255, 0, 0, 0),
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       
         body: 
