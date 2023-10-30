@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:uts/page/home.dart';
 import 'package:uts/page/transacsation.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
@@ -16,11 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Color myColor = Color.fromRGBO(233, 238, 245, 0);
     return MaterialApp(
-      
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 255, 0, 0)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'MyApp'),
