@@ -125,7 +125,7 @@ class TransPageLinkAja extends State<TransPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network("https://niceillustrations.com/wp-content/uploads/2021/07/Meditation-color-800px.png",
+                        Image.network("https://niceillustrations.com/wp-content/uploads/2022/01/Finance-App-color-800px.png",
                           width: 210, 
                           height: 210,
                         ),
